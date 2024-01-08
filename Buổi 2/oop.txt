@@ -104,3 +104,25 @@ Gọi phương thức, hằng số, thuộc tính:
                 $tenObject::TEN_HANG_SO; // gọi hằng số
                 hoặc TenClass::TEN_HANG_SO;
             ?>
+NameSpace:
+- Tạo ra định danh cho class Namspace sẽ giải quyết các trường hợp class bị trùng nhau,
+autoload composer
+Cú pháp:
+namespace TenNameSpace;
+Sử dụng:
+Cách 1:
+<?php
+$tenObject = new TenNameSpace\TenClass();
+?>
+Cách 2:
+<?php
+use TenNameSpace\TenClass;
+$tenObject = new TenClass();
+Lưu ý:
+- Khai báo NameSpace phải đ-hp
+- Sử dụng NameSpace bằng từ khóa use thường đặt ở đầu file
+- Cần đặt bí danh nếu sử dụng Use bị trùng class.
+Đặt bí danh:
+<?php
+use TenNameSpace\TenClass as TenClassMoi; $tenObject = new TenClassMoi();
+?>
