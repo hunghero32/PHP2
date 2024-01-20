@@ -1,36 +1,38 @@
 <?php
 require_once 'model/account.php';
 
-class UserController {
-    private $userManager;
-
-    public function __construct() {
-        $this->userManager = new UserManager();
-    }
-
+class UserController extends UserManager {
     public function listAccounts() {
-        $accounts = $this->userManager->getAllAccounts();
-        var_dump($accounts);
+        $accounts = parent::getAllAccounts();
+        require_once "view/list.php";
     }
 
     public function viewAccount($id) {
-        $account = $this->userManager->getAccountById($id);
+        $account = $this->getAccountById($id);
         var_dump($account);
     }
 
-    public function createAccount($username, $password, $phone, $email) {
-        $this->userManager->insertAccount($username, $password, $phone, $email);
-        echo "Account created successfully.";
+    public function createAccount($username, $password, $phone, $email, $name, $birthday, $gender, $address) {
+        parent::insertAccount($username, $password, $phone, $email, $name, $birthday, $gender, $address);
+        echo '<script>
+            alert("Tạo Xong");
+            window.location.href="index.php?url=list";
+            </script>';
     }
 
-    public function updateAccount($id, $username, $password, $phone, $email) {
-        $this->userManager->updateAccount($id, $username, $password, $phone, $email);
-        echo "Account updated successfully.";
+    public function updateAccount($id, $username, $password, $phone, $email, $name, $birthday, $gender, $address) {
+        parent::updateAccount($id, $username, $password, $phone, $email, $name, $birthday, $gender, $address);
+        echo '<script>
+            alert("Cập nhật ' . $id . '");
+            window.location.href="index.php?url=list";
+            </script>';
     }
 
     public function deleteAccount($id) {
-        $this->userManager->deleteAccount($id);
-        echo "Account deleted successfully.";
+        parent::deleteAccount($id);
+        echo '<script>
+                window.location.href="index.php?url=list";
+            </script>';
     }
 }
 ?>

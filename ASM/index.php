@@ -1,43 +1,68 @@
 <?php
-require_once 'controller/account.php'; // Change to the correct path and filename for UserController
+require_once 'controller/account.php';
+
+$url = isset($_GET["url"]) ? $_GET["url"] : "/";
 
 $userController = new UserController();
 
-if (isset($_GET['url'])) {
-    $url = $_GET['url'];
-    
-    switch ($url) {
-        case 'addTk':
-            if (isset($_POST['submit'])) {
-                $userController->createAccount($_POST['userName'], $_POST['password'], $_POST['phoneNumber'], $_POST['email']);
+switch ($url) {
+    case "list":
+        $userController->listAccounts();
+        break;
+        case "add":
+            $username = isset($_POST["username"]) ? $_POST["username"] : '';
+            $password = isset($_POST["password"]) ? $_POST["password"] : '';
+            $phone = isset($_POST["phone"]) ? $_POST["phone"] : '';
+            $email = isset($_POST["email"]) ? $_POST["email"] : '';
+            $name = isset($_POST["name"]) ? $_POST["name"] : '';
+            $birthday = isset($_POST["birthday"]) ? $_POST["birthday"] : '';
+            $gender = isset($_POST["gender"]) ? $_POST["gender"] : '';
+            $address = isset($_POST["address"]) ? $_POST["address"] : '';
+        
+            if ($_SERVER["REQUEST_METHOD"] === "POST") {
+                $userController->createAccount($username, $password, $phone, $email, $name, $birthday, $gender, $address);
             }
-            // Assuming add_tk_view() is a function for displaying the add account form
-            // Make sure to customize it according to your application's needs
-            add_tk_view();
+            require_once "view/add.php";
             break;
+        
+
+            case "update":
+                $id = isset($_GET["id"]) ? $_GET["id"] : "";
+                if ($id !== "") {
+                    $account = $userController->getAccountById($id);
             
-        case 'deleteTk':
-            if (isset($_GET['id'])) {
-                $userController->deleteAccount($_GET['id']);
-            }
-            break;
+                    if ($account) {
+                        $username = isset($_POST["username"]) ? $_POST["username"] : '';
+                        $password = isset($_POST["password"]) ? $_POST["password"] : '';
+                        $phone = isset($_POST["phone"]) ? $_POST["phone"] : '';
+                        $email = isset($_POST["email"]) ? $_POST["email"] : '';
+                        $name = isset($_POST["name"]) ? $_POST["name"] : '';
+                        $birthday = isset($_POST["birthday"]) ? $_POST["birthday"] : '';
+                        $gender = isset($_POST["gender"]) ? $_POST["gender"] : '';
+                        $address = isset($_POST["address"]) ? $_POST["address"] : '';
             
-        case 'updateTk':
-            if (isset($_GET['id'])) {
-                // Assuming update_tk_view() is a function for displaying the update account form
-                // Make sure to customize it according to your application's needs
-                updateAccount($_GET['id']);
-            } else {
-                // Handle the case where no ID is provided for updating
-                echo "Invalid request for updating account.";
-            }
-            break;
+                        if ($_SERVER["REQUEST_METHOD"] === "POST") {
+                            $userController->updateAccount($id, $username, $password, $phone, $email, $name, $birthday, $gender, $address);
+                        }
             
-        default:
-            $userController->listAccounts(); // Assuming list_tk() is a function for displaying the list of accounts
-            break;
-    }
-} else {
-    $userController->listAccounts(); // Assuming list_tk() is a function for displaying the list of accounts
+                        require_once "view/update.php";
+                    }
+                } else {
+                    echo "Invalid request. Please provide an account ID.";
+                }
+                break;
+
+    case "delete":
+        $id = isset($_GET["id"]) ? $_GET["id"] : "";
+        if ($id !== null) {
+            $userController->deleteAccount($id);
+        } else {
+            echo "Invalid request. Please provide an account ID.";
+        }
+        break;
+
+    default:
+        $userController->listAccounts();
+
+        break;
 }
-?>

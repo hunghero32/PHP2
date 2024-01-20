@@ -1,36 +1,78 @@
 <?php
 require_once 'db.php';
 
-class UserManager {
-    private $db;
-
-    public function __construct() {
-        $this->db = new DB();
+class UserManager extends DB
+{
+    public function getAllAccounts()
+    {
+        return $this->query(
+            "SELECT account.*, info.*
+            FROM account
+            JOIN info ON account.id = info.idacc"
+        );
     }
 
-    public function getAllAccounts() {
-        $sql = "SELECT * FROM account";
-        return $this->db->query($sql);
+    public function getAccountById($id)
+    {
+        return $this->queryOne(
+            "SELECT account.*, info.*
+            FROM account
+            JOIN info ON account.id = info.idacc
+            WHERE info.id = :id", [':id' => $id]
+            );
     }
 
-    public function getAccountById($id) {
-        $sql = "SELECT * FROM account WHERE id = :id";
-        return $this->db->queryOne($sql, [':id' => $id]);
+    public function insertAccount($username, $password, $phone, $email, $name, $birthday, $gender, $address)
+    {
+        $this->execute("
+            INSERT INTO account (`username`, `password`, `phone`, `email`) 
+            VALUES (:username, :password, :phone, :email);
+            INSERT INTO info (`idacc`, `name`, `birthday`, `gender`, `address`) 
+            SELECT LAST_INSERT_ID(), :name, :birthday, :gender, :address;
+        ", [
+            ':username' => $username,
+            ':password' => $password,
+            ':phone' => $phone,
+            ':email' => $email,
+            ':name' => $name,
+            ':birthday' => $birthday,
+            ':gender' => $gender,
+            ':address' => $address
+        ]);
     }
 
-    public function insertAccount($username, $password, $phone, $email) {
-        $sql = "INSERT INTO `account` (`username`, `password`, `phone`, `email`) VALUES (:username, :password, :phone, :email)";
-        $this->db->execute($sql, [':username' => $username, ':password' => $password, ':phone' => $phone, ':email' => $email]);
+    public function deleteAccount($id)
+    {
+        $this->execute("DELETE FROM info WHERE id = :id", [':id' => $id]);
     }
-
-    public function deleteAccount($id) {
-        $sql = "DELETE FROM account WHERE id = :id";
-        $this->db->execute($sql, [':id' => $id]);
+public function updateAccount($id, $username, $password, $phone, $email, $name, $birthday, $gender, $address)
+{
+    try {
+        $this->execute("
+        UPDATE account 
+        SET username = :username, password = :password, phone = :phone, email = :email
+        WHERE id = :id;
+    ", [
+        ':id' => $id,
+        ':username' => $username,
+        ':password' => $password,
+        ':phone' => $phone,
+        ':email' => $email
+    ]);
+    $this->execute("
+    UPDATE info 
+    SET name = :name, birthday = :birthday, gender = :gender, address = :address
+    WHERE idacc = :idacc;
+", [
+    ':idacc' => $id,
+    ':name' => $name,
+    ':birthday' => $birthday,
+    ':gender' => $gender,
+    ':address' => $address
+]);
     }
-
-    public function updateAccount($id, $username, $password, $phone, $email) {
-        $sql = "UPDATE `account` SET `username` = :username, `password` = :password, `phone` = :phone, `email` = :email WHERE `id` = :id";
-        $this->db->execute($sql, [':id' => $id, ':username' => $username, ':password' => $password, ':phone' => $phone, ':email' => $email]);
+    catch (Exception $e) {
+        throw $e;
     }
-}
-?>
+    }
+}   

@@ -5,7 +5,7 @@
   }
 
   div {
-    max-width: 600px;
+    max-width: 900px;
     margin: 50px auto;
     background-color: #fff;
     padding: 20px;
@@ -71,26 +71,38 @@
 
 <div >
   <h2>Danh sách tài khoản</h2>
-  <a href="index.php?url=addTk"><button >Add new</button></a>            
+  <a href="index.php?url=add"><button >Add new</button></a>            
   <table >
     <thead>
       <tr>
         <th>STT</th>
-        <th>Name</th>
-        <th>Phone</th>
+        <th>Tên Tk</th>
         <th>Pass</th>
+        <th>Tên Full</th>
+        <th>Số ĐT</th>
+        <th>Email</th>
+        <th>Sinh Nhật</th>
+        <th>Giới</th>
+        <th>Địa Chỉ</th>
         <th>Actions</th>
       </tr>
     </thead>
     <tbody>
-        <?php foreach($listTk as $val): ?>
+        <?php foreach($accounts as $val): ?>
             <tr>
                 <td><?= $val['id']?></td>
-                <td><?= $val['userName']?></td>
-                <td><?= $val['phoneNumber']?></td>
+                <td><?= $val['username']?></td>
                 <td><?= $val['password']?></td>
-                <td><a href="index.php?url=updateTk&id=<?= $val['id']?>"><button class="btn btn-warning">Update</button></a> 
-                <a href="index.php?url=deleteTk&id=<?= $val['id']?>"><button class="btn btn-danger">Delete</button></a></td>
+                <td><?= $val['name']?></td>
+                <td><?= $val['phone']?></td>
+                <td><?= $val['email']?></td>
+                <td><?= $val['birthday']?></td>
+                <td><?= $val['gender']?></td>
+                <td><?= $val['address']?></td>
+                <td>
+            <a href="index.php?url=update&id=<?= $val['id']?>"><button class="btn btn-warning">Update</button></a> 
+            <a href="index.php?url=delete&id=<?= $val['id']?>"><button class="btn btn-danger">Delete</button></a>
+          </td>
             </tr>
         <?php endforeach; ?>
     </tbody>
