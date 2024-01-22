@@ -1,10 +1,13 @@
 <?php 
-    require_once "models/product.php";
+    namespace App\controller;
+
+    // require_once "app/models/product.php";
+    use App\models\Product;
     class ProductController extends Product{
     function listProduct(){
         // $obj = new Product();
         $product= $this->getProduct();
         // var_dump($product);
-        require_once "views/list.php";
+        require_once "app/views/list.php";
     }}
     ?>

@@ -1,5 +1,7 @@
 <?php
+namespace App\models;
 require_once "env.php";
+use PDO;
 class DB
 {
     // Hàm kết nối

@@ -1,5 +1,7 @@
 <?php
-require_once "db.php";
+namespace App\models;
+// require_once "db.php";
+use App\models\DB;
 // Hàm lấy dữ liệu 
 class Product extends DB
 {
