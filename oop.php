@@ -182,3 +182,24 @@ Interface:
 Phương thức tĩnh và thuộc tính tĩnh. 
 - có thể truy cập trực tiếp mà không cần tạo đối tượng của lớp 
 - class là tĩnh nếu tất cả phương thức và thuộc tĩnh là tĩnh 
+
+Cài COMPOSER 
+
+https://getcomposer.org/download/
+
+Lưu ý: cài chọn đến file php.exe
+
+Sau khi cài xong
+- gõ cmd kiểm tra phiên bản: composer
+chạy:
+- mở terminal trỏ đến đúng project
+  1. gõ lệnh: composer init
+  2. điền package name
+  3. mô tả có thể để trống
+  4. n
+  5. package tpye: project hoặc không
+  6. chạy: composer dumpautoload
+  7. nếu sửa file composer.jon sử dụng câu lệnh: composer dump-autoload 
+
+  cài đặt thư viện phroute: composer require phroute/phroute
+

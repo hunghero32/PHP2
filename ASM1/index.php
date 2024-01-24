@@ -1,53 +1,73 @@
 <?php
-require_once 'controller/account.php';
+require 'vendor/autoload.php';
+require 'app/common/route.php';
+// require_once 'controller/account.php';
 
-$userController = new UserController();
+// $url = !isset($_GET['url']) ? "/" : $_GET['url'];
 
-if (isset($_GET['url'])) {
-    $url = $_GET['url'];
-    
-    switch ($url) {
-        case 'add':
-            if (isset($_POST['submit'])) {
-                $userController->createAccount($_POST['hoTen'], $_POST['tuoi'], $_POST['diaChi'], $_POST['sdt']);
-            }
-            require_once "view/add.php";
-            break;
+// $userController = new UserController();
+
+// switch ($url) {
+//     case "list":
+//         $userController->listAccounts();
+//         break;
+//         case "add":
+//             $userController->createAccount($username, $password, $phone, $email, $name, $birthday, $gender, $address);
+//             $username = isset($_POST["username"]) ? $_POST["username"] : '';
+//             $password = isset($_POST["password"]) ? $_POST["password"] : '';
+//             $phone = isset($_POST["phone"]) ? $_POST["phone"] : '';
+//             $email = isset($_POST["email"]) ? $_POST["email"] : '';
+//             $name = isset($_POST["name"]) ? $_POST["name"] : '';
+//             $birthday = isset($_POST["birthday"]) ? $_POST["birthday"] : '';
+//             $gender = isset($_POST["gender"]) ? $_POST["gender"] : '';
+//             $address = isset($_POST["address"]) ? $_POST["address"] : '';
+        
+//             if ($_SERVER["REQUEST_METHOD"] === "POST") {
+//                 $userController->createAccount($username, $password, $phone, $email, $name, $birthday, $gender, $address);
+//             }
+//             require_once "view/add.php";
+            // break;
+        
+
+            // case "update":
+            //     $id = isset($_GET["id"]) ? $_GET["id"] : "";
+            //     if ($id !== "") {
+            //         $account = $userController->getAccountById($id);
             
-        case 'delete':
-            if (isset($_GET['maNV'])) {
-                $userController->deleteAccount($_GET['maNV']);
-            }
-            break;
+            //         if ($account) {
+            //             $userController->updateAccount($id, $username, $password, $phone, $email, $name, $birthday, $gender, $address);
+//                         $username = isset($_POST["username"]) ? $_POST["username"] : '';
+//                         $password = isset($_POST["password"]) ? $_POST["password"] : '';
+//                         $phone = isset($_POST["phone"]) ? $_POST["phone"] : '';
+//                         $email = isset($_POST["email"]) ? $_POST["email"] : '';
+//                         $name = isset($_POST["name"]) ? $_POST["name"] : '';
+//                         $birthday = isset($_POST["birthday"]) ? $_POST["birthday"] : '';
+//                         $gender = isset($_POST["gender"]) ? $_POST["gender"] : '';
+//                         $address = isset($_POST["address"]) ? $_POST["address"] : '';
             
-        case 'update':
-            // if(isset($_GET['maNV'])){
-            //     $maNV=$_GET['maNV'];
-            //     $accounts=queryOne($maNV);
-            //     if(isset($_SESSION['message'])){
-            //         unset($_SESSION['message']);
-            //     }
-            // }
-            // if(isset($_POST['submit'])){
-            //     $maNV=$_POST['maNV'];
-            //     $userName=$_POST['userName'];
-            //     $phoneNumber=$_POST['phoneNumber'];
-            //     $password=$_POST['password'];
-            //         $result=update_tk($maNV,$userName,$phoneNumber,$password);
-            //         if(!$result){
-            //             unset($_SESSION['message']);
-            //             echo '<script>
-            //                 alert("Ban da update thanh cong !");
-            //                 window.location.href="index.php?url=home";
-            //             </script>';
-            //         }
-            // }
-            include 'view/update.php';
-        default:
-            $userController->listAccounts(); 
-            break;
-    }
-} else {
-    $userController->listAccounts(); 
-}
-?>
+//                         if ($_SERVER["REQUEST_METHOD"] === "POST") {
+//                             $userController->updateAccount($id, $username, $password, $phone, $email, $name, $birthday, $gender, $address);
+//                         }
+            
+//                         require_once "view/update.php";
+    //                 }
+    //             } else {
+    //                 echo "Invalid request. Please provide an account ID.";
+    //             }
+    //             break;
+
+    // case "delete":
+    //     $userController->deleteAccount($id);
+//         $id = isset($_GET["id"]) ? $_GET["id"] : "";
+//         if ($id !== null) {
+//             $userController->deleteAccount($id);
+//         } else {
+//             echo "Invalid request. Please provide an account ID.";
+//         }
+//         break;
+
+//     default:
+//         $userController->listAccounts();
+
+//         break;
+// }

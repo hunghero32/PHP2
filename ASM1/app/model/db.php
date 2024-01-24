@@ -1,6 +1,8 @@
 <?php
+namespace App\model;
 include 'env.php';
-
+use PDO;
+use PDOException;
 class DB
 {
     private $connect;

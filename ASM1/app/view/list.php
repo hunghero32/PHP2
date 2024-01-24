@@ -5,7 +5,7 @@
   }
 
   div {
-    max-width: 600px;
+    max-width: 900px;
     margin: 50px auto;
     background-color: #fff;
     padding: 20px;
@@ -70,29 +70,39 @@
 </style>
 
 <div >
-  <h2>Danh sách Nhân Viên</h2>
-  <a href="index.php?url=add"><button >Add new</button></a>            
+  <h2>Danh sách tài khoản</h2>
+  <a href="add"><button >Add new</button></a>            
   <table >
     <thead>
       <tr>
-        <th>Mã</th>
-        <th>Họ và Tên</th>
-        <th>Tuổi</th>
+        <th>STT</th>
+        <th>Tên Tk</th>
+        <th>Pass</th>
+        <th>Tên Full</th>
+        <th>Số ĐT</th>
+        <th>Email</th>
+        <th>Sinh Nhật</th>
+        <th>Giới</th>
         <th>Địa Chỉ</th>
-        <th>Số Điện Thoại </th>
-        <th>Cấu hình</th>
+        <th>Actions</th>
       </tr>
     </thead>
     <tbody>
         <?php foreach($accounts as $val): ?>
             <tr>
-                <td><?= $val['maNV']?></td>
-                <td><?= $val['hoTen']?></td>
-                <td><?= $val['tuoi']?></td>
-                <td><?= $val['diaChi']?></td>
-                <td><?= $val['sdt']?></td>
-                <td><a href="index.php?url=update&id=<?= $val['maNV']?>"><button >Update</button></a> 
-                <a href="index.php?url=delete&id=<?= $val['maNV']?>"><button >Delete</button></a></td>
+                <td><?= $val['id']?></td>
+                <td><?= $val['username']?></td>
+                <td><?= $val['password']?></td>
+                <td><?= $val['name']?></td>
+                <td><?= $val['phone']?></td>
+                <td><?= $val['email']?></td>
+                <td><?= $val['birthday']?></td>
+                <td><?= $val['gender']?></td>
+                <td><?= $val['address']?></td>
+                <td>
+            <a href="update/<?= $val['id']?>"><button class="btn btn-warning">Update</button></a> 
+            <a href="delete/<?= $val['id']?>"><button class="btn btn-danger">Delete</button></a>
+          </td>
             </tr>
         <?php endforeach; ?>
     </tbody>

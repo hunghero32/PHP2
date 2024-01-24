@@ -9,5 +9,9 @@
         $product= $this->getProduct();
         // var_dump($product);
         require_once "app/views/list.php";
-    }}
+    }
+    function testController(){
+        echo "Hello";
+    }
+}
     ?>
