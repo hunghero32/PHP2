@@ -50,6 +50,7 @@ public function updatePets($id,$loai, $mota, $soluong, $gia)
         ':soluong' => $soluong,
         ':gia' => $gia
     ]);
+        // có thể add thêm không giới hạn $this->execute
     }
     catch (Exception $e) {
         throw $e;

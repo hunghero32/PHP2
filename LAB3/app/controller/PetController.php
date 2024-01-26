@@ -18,7 +18,7 @@ class PetController extends PetModel
         }
         require_once "app/view/update.php";
     }
-//================================ Chạy Chức năng ============================
+//================================ Chạy Chức năng ===========================
 public function list() {
     $pet = parent::getAllPets();
     require_once "app/view/list.php";
