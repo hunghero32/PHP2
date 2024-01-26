@@ -56,7 +56,7 @@ public function updateAcc($id) {
             parent::updateAccount($id, $username, $password, $phone, $email, $name, $birthday, $gender, $address);
 
             echo '<script>
-                alert("Cập nhật ' . $id . '");
+                alert("Cập nhật tài khoản ' . $username . '");
                 window.location.href="/PHP2/ASM1/";
             </script>';
         }
@@ -74,6 +74,7 @@ public function deleteAcc($id) {
         echo "Invalid request. Please provide an account ID.";
     }
     echo '<script>
+        alert("xóa ID ' . $id . '");
             window.location.href="/PHP2/ASM1/";
         </script>';
 }
