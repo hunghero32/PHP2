@@ -1,5 +1,7 @@
 <?php
-
+require 'app/view/unchanged/head.php';
+require 'app/view/unchanged/header.php';
+require 'app/view/auth.php';
 use Phroute\Phroute\RouteCollector;
 use App\Controller\Controller;
 
@@ -43,5 +45,6 @@ $response = $dispatcher->dispatch($_SERVER['REQUEST_METHOD'], $url);
 // Print out the value returned from the dispatched function
 echo $response;
 
-
+require 'app/view/unchanged/js.php';
+require 'app/view/unchanged/footer.php';
 ?>

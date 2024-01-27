@@ -1,9 +1,5 @@
-<?php require 'app/view/unchanged/head.php'?>
-<body>
-<?php require 'app/view/unchanged/header.php'?>
-<?php require 'app/view/auth.php';?>
 <?php
-require 'vendor/autoload.php';
+// require 'vendor/autoload.php';
 require 'app/common/route.php';
 // require 'app/view/home.php';
 
@@ -17,7 +13,3 @@ require 'app/common/route.php';
 
     // cài đặt thư viện phroute: composer require phroute/phroute
 ?>
-<?php require 'app/view/unchanged/footer.php';?>
-</body>
-<?php require 'app/view/unchanged/js.php';?>
-</html>
