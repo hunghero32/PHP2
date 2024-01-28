@@ -1,18 +1,17 @@
 <?php
 
 use Phroute\Phroute\RouteCollector;
-use App\Controller\ProductController;
-use App\Controller\TypeController;
+use App\Controller\Controller;
 
 require_once 'vendor/autoload.php';
+
+// Assuming BASE_URL is defined elsewhere in your application
+define('BASE_URL', ''); // Replace with your actual base URL
 
 session_start();
 
 $url = isset($_GET['url']) ? $_GET['url'] : '/';
 $router = new RouteCollector();
-
-// Assuming BASE_URL is defined elsewhere in your application
-define('BASE_URL', 'http://yourdomain.com/'); // Replace with your actual base URL
 
 // Add filter for checking login
 $router->filter('auth', function(){
@@ -23,24 +22,14 @@ $router->filter('auth', function(){
 });
 
 // Define routes
-$router->get('/', [ProductController::class, 'r']);
-// Product
-$router->get('Plist', [ProductController::class, 'r']);
-$router->get('Padd', [ProductController::class, 'c']);
-$router->get('Pupdate/{id}', [ProductController::class, 'u']);
-$router->get('Pdelete/{id}', [ProductController::class, 'd']);
+$router->get('/', [Controller::class, 'home']);
+$router->get('product/{id}', [Controller::class, 'product']);
+$router->get('add', [Controller::class, 'c']);
+$router->get('update/{id}', [Controller::class, 'u']);
+$router->get('delete/{id}', [Controller::class, 'd']);
 
-$router->post('Padd', [ProductController::class, 'Cre']);
-$router->post('Pupdate/{id}', [ProductController::class, 'Upd']);
-
-// Type 
-$router->get('Tlist', [TypeController::class, 'r']);
-$router->get('Tadd', [TypeController::class, 'c']);
-$router->get('Tupdate/{id}', [TypeController::class, 'u']);
-$router->get('Tdelete/{id}', [TypeController::class, 'd']);
-
-$router->post('Tadd', [TypeController::class, 'Cre']);
-$router->post('Tupdate/{id}', [TypeController::class, 'Upd']);
+$router->post('add', [Controller::class, 'Cre']);
+$router->post('update/{id}', [Controller::class, 'Upd']);
 
 // Add this route to handle static assets
 $router->get('/assets/{path:.+}', function($path) {
@@ -59,7 +48,7 @@ $router->get('/assets/{path:.+}', function($path) {
             'jpg' => 'image/jpeg',
             'jpeg' => 'image/jpeg',
             'gif' => 'image/gif',
-            'css' => 'text/css', // Add more content types as needed
+            // Add more content types as needed
         ];
 
         if (isset($contentTypes[$extension])) {
@@ -68,11 +57,13 @@ $router->get('/assets/{path:.+}', function($path) {
 
         // Output the file content
         readfile($file);
-        exit; // Exit to prevent the router from further processing
+    } else {
+        // Return a 404 response if the file doesn't exist
+        http_response_code(404);
+        echo 'Not Found';
     }
-
-    // If the file doesn't exist, let the router handle the request
-    return null;
+    // Exit to prevent the router from further processing
+    exit;
 });
 
 $dispatcher = new Phroute\Phroute\Dispatcher($router->getData());
@@ -80,3 +71,4 @@ $response = $dispatcher->dispatch($_SERVER['REQUEST_METHOD'], $url);
 
 // Print out the value returned from the dispatched function
 echo $response;
+?>

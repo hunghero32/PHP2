@@ -70,38 +70,24 @@
 </style>
 
 <div >
-  <h2>Danh sách tài khoản</h2>
-  <a href="index.php?url=add"><button >Add new</button></a>            
+  <h2>Danh sách Loại</h2>
+  <a href="Tadd"><button >Add new</button></a>            
   <table >
     <thead>
       <tr>
         <th>STT</th>
-        <th>Tên Tk</th>
-        <th>Pass</th>
-        <th>Tên Full</th>
-        <th>Số ĐT</th>
-        <th>Email</th>
-        <th>Sinh Nhật</th>
-        <th>Giới</th>
-        <th>Địa Chỉ</th>
+        <th>Loại</th>
         <th>Actions</th>
       </tr>
     </thead>
     <tbody>
-        <?php foreach($accounts as $val): ?>
+        <?php foreach($type as $val): ?>
             <tr>
                 <td><?= $val['id']?></td>
-                <td><?= $val['username']?></td>
-                <td><?= $val['password']?></td>
-                <td><?= $val['name']?></td>
-                <td><?= $val['phone']?></td>
-                <td><?= $val['email']?></td>
-                <td><?= $val['birthday']?></td>
-                <td><?= $val['gender']?></td>
-                <td><?= $val['address']?></td>
+                <td><?= $val['type']?></td>
                 <td>
-            <a href="index.php?url=update&id=<?= $val['id']?>"><button class="btn btn-warning">Update</button></a> 
-            <a href="index.php?url=delete&id=<?= $val['id']?>"><button class="btn btn-danger">Delete</button></a>
+            <a href="Tupdate/<?= $val['id']?>"><button class="btn btn-warning">Update</button></a> 
+            <a href="Tdelete/<?= $val['id']?>"><button class="btn btn-danger">Delete</button></a>
           </td>
             </tr>
         <?php endforeach; ?>

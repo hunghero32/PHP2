@@ -1,19 +1,19 @@
 <?php return array(
     'root' => array(
-        'name' => 'hung/asm2',
+        'name' => 'hung/app',
         'pretty_version' => 'dev-master',
         'version' => 'dev-master',
-        'reference' => '3fb4db9213605751d6a6a5782df27e4a4faeb799',
+        'reference' => '9e6759e99dfab39a9734e44d1810c14e4eb8c0d1',
         'type' => 'library',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
         'dev' => true,
     ),
     'versions' => array(
-        'hung/asm2' => array(
+        'hung/app' => array(
             'pretty_version' => 'dev-master',
             'version' => 'dev-master',
-            'reference' => '3fb4db9213605751d6a6a5782df27e4a4faeb799',
+            'reference' => '9e6759e99dfab39a9734e44d1810c14e4eb8c0d1',
             'type' => 'library',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),

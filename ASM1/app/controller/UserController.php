@@ -30,7 +30,6 @@ public function createAcc() {
         parent::insertAccount($username, $password, $phone, $email, $name, $birthday, $gender, $address);
 
         echo '<script>
-            alert("Tạo Xong");
             window.location.href="/PHP2/ASM1/";
             </script>';
     } else {

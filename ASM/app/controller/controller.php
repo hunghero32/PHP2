@@ -4,6 +4,7 @@ namespace App\controller;
 
 use App\model\Model;
 
+require "model/model.php";
 class Controller extends Model
 {
     // Hiển thị CRUD ===> GET

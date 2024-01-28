@@ -20,7 +20,7 @@
                     <i class="icon-bars"></i>
                 </button>
 
-                <a href="index.html" class="logo">
+                <a href="index.php" class="logo">
                     <img src="assets/images/logo.png" alt="Molla Logo" width="105" height="25">
                 </a>
 
@@ -30,7 +30,7 @@
                             <a href="category.html">Shop</a>
                         </li>
                         <li>
-                            <a href="product.html">Product</a>
+                            <a href="product">Product</a>
                         </li>
                     </ul><!-- End .menu -->
                 </nav><!-- End .main-nav -->
@@ -57,7 +57,7 @@
                             <div class="product">
                                 <div class="product-cart-details">
                                     <h4 class="product-title">
-                                        <a href="product.html">Beige knitted elastic runner shoes</a>
+                                        <a href="product">Beige knitted elastic runner shoes</a>
                                     </h4>
 
                                     <span class="cart-product-info">
@@ -67,7 +67,7 @@
                                 </div><!-- End .product-cart-details -->
 
                                 <figure class="product-image-container">
-                                    <a href="product.html" class="product-image">
+                                    <a href="product" class="product-image">
                                         <img src="assets/images/products/cart/product-1.jpg" alt="product">
                                     </a>
                                 </figure>
@@ -77,7 +77,7 @@
                             <div class="product">
                                 <div class="product-cart-details">
                                     <h4 class="product-title">
-                                        <a href="product.html">Blue utility pinafore denim dress</a>
+                                        <a href="product">Blue utility pinafore denim dress</a>
                                     </h4>
 
                                     <span class="cart-product-info">
@@ -87,7 +87,7 @@
                                 </div><!-- End .product-cart-details -->
 
                                 <figure class="product-image-container">
-                                    <a href="product.html" class="product-image">
+                                    <a href="product" class="product-image">
                                         <img src="assets/images/products/cart/product-2.jpg" alt="product">
                                     </a>
                                 </figure>
@@ -124,13 +124,13 @@
         <nav class="mobile-nav">
             <ul class="mobile-menu">
                 <li class="active">
-                    <a href="index.html">Home</a>
+                    <a href="index.php">Home</a>
                 </li>
                 <li>
                     <a href="category.html">Shop</a>
                 </li>
                 <li>
-                    <a href="product.html" class="sf-with-ul">Product</a>
+                    <a href="product" class="sf-with-ul">Product</a>
                 </li>
             </ul>
         </nav><!-- End .mobile-nav -->

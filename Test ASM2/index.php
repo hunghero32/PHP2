@@ -1,6 +1,9 @@
+
 <?php
 // require 'vendor/autoload.php';
 require 'app/common/route.php';
+// require 'app/view/home.php';
+
     // 1. gõ lệnh: composer init
     // 2. điền package name
     // 3. mô tả có thể để trống
