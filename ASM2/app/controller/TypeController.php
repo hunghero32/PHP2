@@ -28,6 +28,9 @@ class TypeController extends TypeModel
         if ($id !== null) {
             parent::delete($id);
         }
+        echo '<script>
+        window.location.href="/PHP2/ASM2/Tlist";
+        </script>';
     }
     // Thực hiện Cre và Upd ===> POST 
     public function Cre()

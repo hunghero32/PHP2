@@ -31,6 +31,9 @@
 
     input[type="text"],
     input[type="number"],
+    input[type="email"],
+    input[type="date"],
+
     select {
         width: 100%;
         padding: 10px;
@@ -62,31 +65,23 @@
 </style>
 <div>
     <h2>Cập nhật Thông Tin</h2>
-    <?php if (isset($product) && !empty($product)) : ?>
-        <form action="<?= isset($product['id']) ? $product['id'] : '' ?>" method="POST">
+    <?php if (isset($account) && !empty($account)) : ?>
+        <form action="<?= isset($account['id']) ? $account['id'] : '' ?>" method="POST">
             <div>
-                <label for="type">Loại:</label>
-                <select id="type" name="type">
-                    <?php foreach ($type as $val) : ?>
-                        <option value="<?= $val['id'] ?>"><?= $val['type'] ?></option>
-                    <?php endforeach; ?>
-                </select>
+                <input type="hidden" name="id" value="<?= $account['id'] ?>">
 
-                <label for="name">Tên:</label>
-                <input type="text" id="name" name="name" value="<?= $product['name'] ?>" required>
+                <label for="username">Tài Khoản:</label>
+                <input type="text" id="username" name="username" value="<?= $account['username'] ?>" required>
 
-                <label for="img">Ảnh:</label>
-                <input type="img" id="img" name="img" value="<?= $product['img'] ?>" >
+                <label for="password">Mật Khẩu:</label>
+                <input type="text" id="password" name="password" value="<?= $account['password'] ?>" required>
 
-                <label for="des">Mô Tả:</label>
-                <textarea id="des" name="des" value="<?= $product['des'] ?>" ></textarea>
-
-                <label for="price">Giá:</label>
-                <input type="text" id="price" value="<?= $product['price'] ?>" name="price" required>
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" value="<?= $account['email'] ?>" required>
 
                 <button type="submit">Cập nhật Thông Tin</button>
             </div>
         </form>
     <?php endif; ?>
-    <a href="/PHP2/ASM2/Plist">Quay lại</a>
+    <a href="/PHP2/ASM2/Alist">Quay lại</a>
 </div>

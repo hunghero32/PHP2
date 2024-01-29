@@ -3,23 +3,27 @@
 namespace App\controller;
 
 use App\model\ProductModel;
-
+use App\Model\TypeModel;
+$TypeModel = new TypeModel;
 class ProductController extends ProductModel
 {
     // Hiển thị CRUD ===> GET
     public function C()
     {
+        $type = (new TypeModel)->getAll();
         require_once "app/view/product/add.php";
     }
     public function R()
     {
         $product = parent::getAll();
+        
         require_once "app/view/product/list.php";
     }
     public function U($id)
     {
         if ($id !== "") {
             $product = $this->getById($id);
+            $type = (new TypeModel)->getAll();
         }
         require_once "app/view/product/update.php";
     }
@@ -28,6 +32,9 @@ class ProductController extends ProductModel
         if ($id !== null) {
             parent::delete($id);
         }
+        echo '<script>
+        window.location.href="/PHP2/ASM2/Plist";
+        </script>';
     }
     // Thực hiện Cre và Upd ===> POST 
     public function Cre()
@@ -40,6 +47,9 @@ class ProductController extends ProductModel
             $price = isset($_POST['price']) ? $_POST['price'] : "";
             parent::insert($name,$type,$img,$des,$price);
         }
+        echo '<script>
+        window.location.href="/PHP2/ASM2/Plist";
+        </script>';
     }
     public function Upd($id)
     {
@@ -53,6 +63,9 @@ class ProductController extends ProductModel
                 $price = isset($_POST['price']) ? $_POST['price'] : "";
                 parent::update($id,$type,$name,$img,$des,$price);
             }
-        }
+        }        echo '<script>
+        window.location.href="/PHP2/ASM2/Plist";
+        </script>';
     }
+    
 }

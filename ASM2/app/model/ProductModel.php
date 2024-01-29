@@ -9,26 +9,30 @@ class ProductModel extends DB
 {
     public function getAll()
     {
-        return $this->query("SELECT product.*, type.* FROM product
-            JOIN type ON product.type = type.id"
-            );
+        return $this->query("
+        SELECT product.*,type.type
+        FROM product
+        JOIN type ON product.type = type.id
+    ");
     }
     public function getById($id)
     {
-        return $this->queryOne(
-            "SELECT product.*, type.* FROM product
-            JOIN type ON product.type = type.id
-            WHERE product.id = :id", [':id' => $id]
+        return $this->queryOne("
+        SELECT product.*, type.type
+        FROM product
+        JOIN type ON product.type = type.id
+        WHERE product.id = :id
+            ", [':id' => $id]
             );
     }
     public function delete($id)
     {
         $this->execute("DELETE FROM product WHERE id = :id", [':id' => $id]);
     }
-    public function insert($name,$type,$img,$des,$price)
+    public function insert($name, $type, $img, $des, $price)
     {
         $this->execute("
-            INSERT INTO product (`name`,`img`,`type`,`des`, `price`) 
+            INSERT INTO product (`name`, `img`, `type`, `des`, `price`)
             VALUES (:name, :img, :type, :des, :price);
         ", [
             ':name' => $name,
@@ -38,6 +42,7 @@ class ProductModel extends DB
             ':price' => $price
         ]);
     }
+    
     public function update($id,$type,$name,$img,$des,$price)
 {
     try {

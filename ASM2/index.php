@@ -10,4 +10,6 @@ require 'app/common/route.php';
     // 7. nếu sửa file composer.jon sử dụng câu lệnh: composer dump-autoload 
 
     // cài đặt thư viện phroute: composer require phroute/phroute
+    // cài đặt thư viện bladeone:composer require eftec/bladeone
+// phpinfo();
 ?>
