@@ -1,5 +1,5 @@
 <?php
-require 'vendor/autoload.php';
+// require 'vendor/autoload.php';
 require 'app/common/route.php';
     // 1. gõ lệnh: composer init
     // 2. điền package name

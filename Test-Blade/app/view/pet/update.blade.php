@@ -62,27 +62,26 @@
 </style>
 <div>
     <h2>Cập nhật Thông Tin</h2>
-    <?php if (isset($pet) && !empty($pet)) : ?>
-        <form action="<?= isset($pet['id']) ? $pet['id'] : '' ?>" method="POST">
+    @if (isset($pet) && !empty($pet))
+        <form action="{{isset($pet['id']) ? $pet['id'] : '' }}" method="POST">
             <div>
-                <input type="hidden" name="id" value="<?= $pet['id'] ?>">
+                <input type="hidden" name="id" value="{{$pet['id']}}">
 
                 <label for="loai">Loại:</label>
-                <input type="text" id="loai" value="<?= $pet['loai'] ?>"name="loai">
-                
+                <input type="text" id="loai" value="{{$pet['loai']}}"name="loai">
                 <label for="mota">Mô Tả:</label>
-                <input type="text" id="mota" value="<?= $pet['mota'] ?>"name="mota">
+                <input type="text" id="mota" value="{{$pet['mota']}}"name="mota">
 
                 <label for="soluong">Số Lượng:</label>
-                <input type="number" id="soluong" name="soluong" value="<?= $pet['soluong'] ?>"required>
+                <input type="number" id="soluong" name="soluong" value="{{$pet['soluong']}}"required>
 
                 <label for="gia">Giá:</label>
-                <input type="number" id="gia" name="gia" value="<?= $pet['gia'] ?>"required>
+                <input type="number" id="gia" name="gia" value="{{$pet['gia']}}"required>
 
 
                 <button type="submit">Cập nhật Thông Tin</button>
             </div>
         </form>
-    <?php endif; ?>
-    <a href="/PHP2/LAB3/">Quay lại</a>
+    @endif
+    <a href="/PHP2/TEST-BLADE/">Quay lại</a>
 </div>

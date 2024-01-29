@@ -1,6 +1,6 @@
 <?php return array(
     'root' => array(
-        'name' => 'hung/mvc',
+        'name' => 'hung/app',
         'pretty_version' => 'dev-master',
         'version' => 'dev-master',
         'reference' => '32bf19cd29b77d8c5b97e185327f56666a084b1d',
@@ -19,7 +19,7 @@
             'aliases' => array(),
             'dev_requirement' => false,
         ),
-        'hung/mvc' => array(
+        'hung/app' => array(
             'pretty_version' => 'dev-master',
             'version' => 'dev-master',
             'reference' => '32bf19cd29b77d8c5b97e185327f56666a084b1d',

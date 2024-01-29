@@ -3,7 +3,7 @@ namespace App\controller;
 use App\model\PetModel;
 class PetController extends PetModel
 {
-
+    public $pet;
 //=============================== Hiển Thị =================================
     public function view(){
         $pet = parent::getAllPets();
@@ -48,25 +48,23 @@ public function createPet() {
 }
 
 
-public function updatePet($id) {
-    $pet = $this->getPetById($id);
-    if ($pet) {
-        if ($_SERVER["REQUEST_METHOD"] === "POST") {
-            $loai = isset($_POST["loai"]) ? $_POST["loai"] : '';
-            $mota = isset($_POST["mota"]) ? $_POST["mota"] : '';
-            $soluong = isset($_POST["soluong"]) ? $_POST["soluong"] : '';
-            $gia = isset($_POST["gia"]) ? $_POST["gia"] : '';
-            parent::updatePets($id,$loai, $mota, $soluong, $gia);
-
-            echo '<script>
-                alert("Cập nhật ' . $id . '");
-                window.location.href="/PHP2/LAB3/";
-            </script>';
+public function updatePet($id)
+    {
+        $pet= parent::getPetById($id); 
+        if ($pet) {
+            if ($_SERVER["REQUEST_METHOD"] === "POST") {
+                $loai = isset($_POST["loai"]) ? $_POST["loai"] : '';
+                $mota = isset($_POST["mota"]) ? $_POST["mota"] : '';
+                $soluong = isset($_POST["soluong"]) ? $_POST["soluong"] : '';
+                $gia = isset($_POST["gia"]) ? $_POST["gia"] : '';
+                parent::updatePets($id,$loai, $mota, $soluong, $gia);
+            }
         }
-    } else {
-        echo "Account not found.";
-    } 
-}
+        echo '<script>
+        alert("Sửa Xong");
+        window.location.href="/PHP2/LAB3/";
+        </script>';
+    }
 public function deletePet($id) {
     if ($id !== null) {
         parent::deletePet($id);

@@ -40,7 +40,7 @@ public function updatePets($id,$loai, $mota, $soluong, $gia)
 {
     try {
         $this->execute("
-        UPDATE pets 
+        UPDATE pets
         SET loai = :loai, mota = :mota, soluong = :soluong, gia = :gia
         WHERE id = :id;
     ", [

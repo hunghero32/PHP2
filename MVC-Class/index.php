@@ -1,6 +1,6 @@
 <?php 
     // require_once "app/controller/product.php";
-    require 'vendor/autoload.php';
+    // require 'vendor/autoload.php';
     require 'app/common/route.php';
     // use App\controller\ProductController;
     // điều hướng các phương thức từ controller

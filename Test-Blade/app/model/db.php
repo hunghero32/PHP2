@@ -18,7 +18,6 @@ class DB
     }
 
     public function execute($sql, $sql_args = array())
-    // Thực thi lệnh SQL
     {
         try {
             $conn = $this->getConnect();
@@ -30,7 +29,6 @@ class DB
     }
 
     public function query($sql, $sql_args = array())
-    // Đọc Full Table
     {
         try {
             $conn = $this->getConnect();
@@ -44,7 +42,6 @@ class DB
     }
 
     public function queryOne($sql, $sql_args = array())
-        // Đọc 1 hàng của Table
     {
         try {
             $conn = $this->getConnect();

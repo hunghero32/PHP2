@@ -68,8 +68,12 @@
                 <input type="hidden" name="id" value="<?= $pet['id'] ?>">
 
                 <label for="loai">Loại:</label>
-                <input type="text" id="loai" value="<?= $pet['loai'] ?>"name="loai">
-                
+                <select id="loai" name="loai">
+                <option value="Chó" <?= $pet['loai'] === 'Chó' ? 'selected' : '' ?>>Chó</option>
+                <option value="Mèo" <?= $pet['loai'] === 'Mèo' ? 'selected' : '' ?>>Mèo</option>
+                <option value="Chuột" <?= $pet['loai'] === 'Chuột' ? 'selected' : '' ?>>Chuột</option>
+                <option value="Tắc Kè" <?= $pet['loai'] === 'Tắc Kè' ? 'selected' : '' ?>>Tắc Kè</option>
+                </select>
                 <label for="mota">Mô Tả:</label>
                 <input type="text" id="mota" value="<?= $pet['mota'] ?>"name="mota">
 

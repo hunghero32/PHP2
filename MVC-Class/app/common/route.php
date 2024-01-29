@@ -1,7 +1,8 @@
 <?php
 
 use Phroute\Phroute\RouteCollector;
-
+use App\Controller\ProductController;
+require 'vendor/autoload.php';
 $url = !isset($_GET['url']) ? "/" : $_GET['url'];
 
 $router = new RouteCollector();
@@ -14,15 +15,15 @@ $router->filter('auth', function(){
 });
 
 
-// bắt đầu định nghĩa ra các đường dẫn
+//bắt đầu định nghĩa ra các đường dẫn
 $router->get('/', function(){
     return "trang chủ";
 });
 
 
 //định nghĩa đường dẫn trỏ đến Product Controller
-$router->get('test', [App\Controller\ProductController::class, 'testController']);
-$router->get('list', [App\Controller\ProductController::class, 'listProduct']);
+$router->get('test', [ProductController::class, 'testController']);
+$router->get('list', [ProductController::class, 'listProduct']);
 
 
 
