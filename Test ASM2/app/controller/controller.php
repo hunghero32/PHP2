@@ -3,6 +3,7 @@
 namespace App\controller;
 
 use App\model\Model;
+
 class Controller extends Model
 {
     // Hiển thị CRUD ===> GET
@@ -10,25 +11,17 @@ class Controller extends Model
     {
         require_once "app/view/add.php";
     }
-    public function Home()
+    public function R()
     {
-        $product = parent::getAll();
-        require_once "app/view/home.php";
-    }
-    public function Product($id)
-    {
-        if ($id !== "") {
-            $product = parent::getById($id);
-        if ($product) {
-            require "app/view/test.php";
-        }}
+        $demo = parent::getAll();
+        require_once "app/view/list.php";
     }
     public function U($id)
     {
         if ($id !== "") {
             $demo = $this->getById($id);
         }
-        require_once "app/view/product.php";
+        require_once "app/view/update.php";
     }
     public function D($id)
     {

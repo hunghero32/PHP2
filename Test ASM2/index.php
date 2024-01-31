@@ -1,9 +1,6 @@
-
 <?php
 // require 'vendor/autoload.php';
 require 'app/common/route.php';
-// require 'app/view/home.php';
-
     // 1. gõ lệnh: composer init
     // 2. điền package name
     // 3. mô tả có thể để trống
@@ -13,4 +10,8 @@ require 'app/common/route.php';
     // 7. nếu sửa file composer.jon sử dụng câu lệnh: composer dump-autoload 
 
     // cài đặt thư viện phroute: composer require phroute/phroute
+    // cài đặt thư viện bladeone:composer require eftec/bladeone
+// phpinfo();
+error_reporting(E_ALL);
+ini_set('display_errors', '1');
 ?>

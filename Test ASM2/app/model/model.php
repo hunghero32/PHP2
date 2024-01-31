@@ -9,12 +9,12 @@ class Model extends DB
 {
     public function getAll()
     {
-        return $this->query("SELECT * FROM product");
+        return $this->query("SELECT * FROM table");
     }
     public function getById($id)
     {
         return $this->queryOne(
-            "SELECT * FROM product 
+            "SELECT * FROM table 
             WHERE id = :id", [':id' => $id]
             );
     }

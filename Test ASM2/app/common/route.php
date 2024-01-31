@@ -1,17 +1,18 @@
 <?php
 
 use Phroute\Phroute\RouteCollector;
-use App\Controller\Controller;
-
+use App\Controller\ProductController;
+use App\Controller\TypeController;
+use App\Controller\AccountController;
 require_once 'vendor/autoload.php';
-
-// Assuming BASE_URL is defined elsewhere in your application
-define('BASE_URL', ''); // Replace with your actual base URL
 
 session_start();
 
 $url = isset($_GET['url']) ? $_GET['url'] : '/';
 $router = new RouteCollector();
+
+// Assuming BASE_URL is defined elsewhere in your application
+define('BASE_URL', 'http://yourdomain.com/'); // Replace with your actual base URL
 
 // Add filter for checking login
 $router->filter('auth', function(){
@@ -22,14 +23,36 @@ $router->filter('auth', function(){
 });
 
 // Define routes
-$router->get('/', [Controller::class, 'home']);
-$router->get('product/{id}', [Controller::class, 'product']);
-$router->get('add', [Controller::class, 'c']);
-$router->get('update/{id}', [Controller::class, 'u']);
-$router->get('delete/{id}', [Controller::class, 'd']);
+$router->get('/', [ProductController::class, 'r']);
+// Account
+$router->get('Alist', [AccountController::class, 'r']);
+$router->get('Aadd', [AccountController::class, 'c']);
+$router->get('Aupdate/{id}', [AccountController::class, 'u']);
+$router->get('Adelete/{id}', [AccountController::class, 'd']);
 
-$router->post('add', [Controller::class, 'Cre']);
-$router->post('update/{id}', [Controller::class, 'Upd']);
+$router->post('Aadd', [AccountController::class, 'Cre']);
+$router->post('Aupdate/{id}', [AccountController::class, 'Upd']);
+//=== Check Login 
+$router->get('Acheck', [AccountController::class, 'check']);
+$router->post('Acheck', [AccountController::class, 'SignIn']);
+
+// Product
+$router->get('Plist', [ProductController::class, 'r']);
+$router->get('Padd', [ProductController::class, 'c']);
+$router->get('Pupdate/{id}', [ProductController::class, 'u']);
+$router->get('Pdelete/{id}', [ProductController::class, 'd']);
+
+$router->post('Padd', [ProductController::class, 'Cre']);
+$router->post('Pupdate/{id}', [ProductController::class, 'Upd']);
+
+// Type 
+$router->get('Tlist', [TypeController::class, 'r']);
+$router->get('Tadd', [TypeController::class, 'c']);
+$router->get('Tupdate/{id}', [TypeController::class, 'u']);
+$router->get('Tdelete/{id}', [TypeController::class, 'd']);
+
+$router->post('Tadd', [TypeController::class, 'Cre']);
+$router->post('Tupdate/{id}', [TypeController::class, 'Upd']);
 
 // Add this route to handle static assets
 $router->get('/assets/{path:.+}', function($path) {
@@ -48,7 +71,7 @@ $router->get('/assets/{path:.+}', function($path) {
             'jpg' => 'image/jpeg',
             'jpeg' => 'image/jpeg',
             'gif' => 'image/gif',
-            // Add more content types as needed
+            'css' => 'text/css', // Add more content types as needed
         ];
 
         if (isset($contentTypes[$extension])) {
@@ -57,13 +80,11 @@ $router->get('/assets/{path:.+}', function($path) {
 
         // Output the file content
         readfile($file);
-    } else {
-        // Return a 404 response if the file doesn't exist
-        http_response_code(404);
-        echo 'Not Found';
+        exit; // Exit to prevent the router from further processing
     }
-    // Exit to prevent the router from further processing
-    exit;
+
+    // If the file doesn't exist, let the router handle the request
+    return null;
 });
 
 $dispatcher = new Phroute\Phroute\Dispatcher($router->getData());
@@ -71,4 +92,3 @@ $response = $dispatcher->dispatch($_SERVER['REQUEST_METHOD'], $url);
 
 // Print out the value returned from the dispatched function
 echo $response;
-?>
