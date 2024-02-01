@@ -64,17 +64,43 @@ class ProductModel extends DB
         throw $e;
     }
     }
-    public function getImg($id)
-    {
-        return $this->queryOne("
-        SELECT img
-        FROM product
-        WHERE id = :id
-            ", [':id' => $id]
-            );
+//     public function uploadImage($img)
+// {
+//     if ($img['name'] !== "") {
+//         $uploadDir = "uploads/"; // Thay đổi đường dẫn upload tùy vào cấu hình của bạn
+//         $imgPath = $uploadDir . basename($img['name']);
+//         move_uploaded_file($img['tmp_name'], $imgPath);
+//         return $imgPath;
+//     }
+//     return '';
+// }
+public function uploadImage($img)
+{
+    $allowedTypes = ['jpg', 'jpeg', 'png', 'gif'];
+    $imgExtension = strtolower(pathinfo($img['name'], PATHINFO_EXTENSION));
+
+    if ($img['name'] !== "" && in_array($imgExtension, $allowedTypes)) {
+        // Đường dẫn đầy đủ tới thư mục uploads
+        $uploadDir ='assets/uploads/';
+
+        // Tên file gốc
+        $imgName = $img['name'];
+        $imgPath = $uploadDir . $imgName;
+
+        if (move_uploaded_file($img['tmp_name'], $imgPath)) {
+            // Trả về một mảng chứa thông tin về ảnh
+            return [
+                'path' => $imgPath,
+                'name' => $imgName,
+                'extension' => $imgExtension,
+                'size' => $img['size'],
+                'mime' => $img['type']
+            ];
+        }
     }
-    public function deleteImg($id)
-    {
-        $this->execute("DELETE FROM product WHERE id = :id", [':id' => $id]);
-    }
+
+    // Trả về mảng rỗng nếu có lỗi hoặc không phải loại file hỗ trợ
+    return [];
+}
+
 }

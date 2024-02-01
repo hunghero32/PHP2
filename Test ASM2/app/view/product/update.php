@@ -78,7 +78,7 @@
                 <input type="text" id="name" name="name" value="<?= $product['name'] ?>" required>
 
                 <label for="img">Ảnh:</label>
-                <img src="../assets/uploads/<?= $product['img'] ?>" alt="Current Image" style="max-width: 100px;">
+                <img src="<?= $product['img'] ?>" alt="Current Image" style="max-width: 100px;">
                 <input type="file" id="img" name="img" accept="image/*">
                 
 

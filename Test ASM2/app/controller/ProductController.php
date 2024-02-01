@@ -17,7 +17,7 @@ class ProductController extends ProductModel
     public function R()
     {
         $product = parent::getAll();
-        
+
         require_once "app/view/product/list.php";
     }
     public function U($id)
@@ -43,16 +43,27 @@ class ProductController extends ProductModel
         if ($_SERVER["REQUEST_METHOD"] === "POST") {
             $name = isset($_POST["name"]) ? $_POST["name"] : '';
             $type = isset($_POST["type"]) ? $_POST["type"] : '';
-            $img = isset($_POST["img"]) ? $_POST["img"] : '';
             $des = isset($_POST["des"]) ? $_POST["des"] : '';
             $price = isset($_POST['price']) ? $_POST['price'] : "";
-
-            parent::insert($name,$type,$img,$des,$price);
+    
+            $img = isset($_FILES["img"]) ? $_FILES["img"] : null;
+    
+            $imgInfo = $this->uploadImage($img);
+            $imgPath = isset($imgInfo['path']) ? $imgInfo['path'] : '';
+            
+            if ($this->isValidImage($imgPath)) {
+                // Thực hiện insert
+                parent::insert($name, $type, $imgPath, $des, $price);
+            } else {
+                echo 'Invalid image type.';
+            }
         }
+    
         echo '<script>
         window.location.href="/PHP2/Test%20ASM2/Plist";
         </script>';
     }
+    
     public function Upd($id)
     {
         $product = $this->getById($id);
@@ -60,14 +71,30 @@ class ProductController extends ProductModel
             if ($_SERVER["REQUEST_METHOD"] === "POST") {
                 $name = isset($_POST["name"]) ? $_POST["name"] : '';
                 $type = isset($_POST["type"]) ? $_POST["type"] : '';
-                $img = isset($_POST["img"]) ? $_POST["img"] : '';
                 $des = isset($_POST["des"]) ? $_POST["des"] : '';
                 $price = isset($_POST['price']) ? $_POST['price'] : "";
-
-                parent::update($id,$type,$name,$img,$des,$price);
+    
+                $img = isset($_FILES["img"]) ? $_FILES["img"] : null;
+    
+                $imgInfo = $this->uploadImage($img);
+                $imgPath = isset($imgInfo['path']) ? $imgInfo['path'] : '';
+    
+                if ($this->isValidImage($imgPath)) {
+                    // Thực hiện update
+                    parent::update($id, $type, $name, $imgPath, $des, $price);
+                } else {
+                    echo 'Invalid image type.';
+                }
             }
-        }        echo '<script>
+        }
+    
+        echo '<script>
         window.location.href="/PHP2/Test%20ASM2/Plist";
         </script>';
     }
+    
+    public function isValidImage($imgPath)
+{
+    return exif_imagetype($imgPath) !== false;
+}
 }

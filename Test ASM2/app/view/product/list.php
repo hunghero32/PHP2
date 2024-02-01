@@ -91,7 +91,7 @@
           <td><?= $val['id'] ?></td>
           <td><?= $val['type'] ?></td>
           <td><?= $val['name'] ?></td>
-          <td> <img src="assets/uploads/<?= $val['img'] ?>" style="max-width: 100px;"></td>
+          <td> <img src="<?php echo $val['img'] ?>" style="max-width: 100px;"></td>
           <td><?= $val['des'] ?></td>
           <td><?= $val['price'] ?></td>
           <td>

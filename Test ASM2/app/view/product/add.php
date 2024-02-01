@@ -76,7 +76,7 @@
         <input type="text" id="name" name="name" required>
 
         <label for="img">Ảnh:</label>
-        <input type="file" id="img" name="img" accept="image/*">
+        <input type="file" name="img" id="img" accept="image/*">
 
         <label for="des">Mô Tả:</label>
         <textarea id="des" name="des" ></textarea>
