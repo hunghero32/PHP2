@@ -11,6 +11,11 @@ class ComposerStaticInit5645b8fd3b616101a8d40dc35bdc4f49
         array (
             'Phroute\\Phroute\\' => 16,
         ),
+        'I' => 
+        array (
+            'Intervention\\Image\\' => 19,
+            'Intervention\\Gif\\' => 17,
+        ),
         'A' => 
         array (
             'App\\' => 4,
@@ -21,6 +26,14 @@ class ComposerStaticInit5645b8fd3b616101a8d40dc35bdc4f49
         'Phroute\\Phroute\\' => 
         array (
             0 => __DIR__ . '/..' . '/phroute/phroute/src/Phroute',
+        ),
+        'Intervention\\Image\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/intervention/image/src',
+        ),
+        'Intervention\\Gif\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/intervention/gif/src',
         ),
         'App\\' => 
         array (

@@ -3,25 +3,28 @@
 namespace App\controller;
 
 use App\model\AccountModel;
+use App\model\ProductModel;
+use App\model\TypeModel;
+
 
 class AccountController extends AccountModel
 {
     // Hiển thị CRUD ===> GET
     public function C()
     {
-        require_once "app/view/account/add.php";
+        require_once "app/view/admin/account/add.php";
     }
     public function R()
     {
         $account = parent::getAll();
-        require_once "app/view/account/list.php";
+        require_once "app/view/admin/account/list.php";
     }
     public function U($id)
     {
         if ($id !== "") {
             $account =parent::getById($id);
         }
-        require_once "app/view/account/update.php";
+        require_once "app/view/admin/account/update.php";
     }
     public function D($id)
     {
@@ -41,7 +44,7 @@ class AccountController extends AccountModel
         }
         echo '<script>
         alert("Tạo Thành công");
-        window.location.href="/PHP2/ASM2/Alist";
+        window.location.href="http://localhost:10/PHP2/ASM2/account";
         </script>';
     }
     public function Upd($id)
@@ -57,7 +60,7 @@ class AccountController extends AccountModel
         }
         echo '<script>
         alert("Update Thành công");
-        window.location.href="/PHP2/ASM2/Alist";
+        window.location.href="http://localhost:10/PHP2/ASM2/account";
         </script>';
     }
     public function SignIn()
@@ -84,7 +87,7 @@ class AccountController extends AccountModel
             }
         } else {
             // Display the login form
-            require_once "app/view/account/signin.php";
+            require_once "app/view/admin/account/signin.php";
         }
     }
 
@@ -104,6 +107,25 @@ class AccountController extends AccountModel
     //==== Check
     public function check()
     {   
-        require_once "app/view/account/check.php";
+        require_once "app/view/admin/check.php";
+    }
+    public function admin()
+    {   
+        require_once "app/view/admin/admin.php";
+    }
+    public function product()
+    {   
+        $product =(new ProductModel)->getAll();
+        require_once "app/view/admin/product/product.php";
+    }
+    public function type()
+    {   
+        $type =(new TypeModel)->getAll();
+        require_once "app/view/admin/type/type.php";
+    }
+    public function account()
+    {   
+        $account = parent::getAll();
+        require_once "app/view/admin/account/account.php";
     }
 }

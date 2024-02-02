@@ -12,4 +12,6 @@ require 'app/common/route.php';
     // cài đặt thư viện phroute: composer require phroute/phroute
     // cài đặt thư viện bladeone:composer require eftec/bladeone
 // phpinfo();
+error_reporting(E_ALL);
+ini_set('display_errors', '1');
 ?>

@@ -12,6 +12,7 @@
         }
     ],
     "require": {
-        "phroute/phroute": "^2.2"
+        "phroute/phroute": "^2.2",
+        "intervention/image": "^3.3"
     }
 }

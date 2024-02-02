@@ -7,5 +7,7 @@ $baseDir = dirname($vendorDir);
 
 return array(
     'Phroute\\Phroute\\' => array($vendorDir . '/phroute/phroute/src/Phroute'),
+    'Intervention\\Image\\' => array($vendorDir . '/intervention/image/src'),
+    'Intervention\\Gif\\' => array($vendorDir . '/intervention/gif/src'),
     'App\\' => array($baseDir . '/app'),
 );

@@ -9,19 +9,19 @@ class TypeController extends TypeModel
     // Hiển thị CRUD ===> GET
     public function C()
     {
-        require_once "app/view/type/add.php";
+        require_once "app/view/admin/type/add.php";
     }
     public function R()
     {
         $type = parent::getAll();
-        require_once "app/view/type/list.php";
+        require_once "app/view/admin/type/list.php";
     }
     public function U($id)
     {
         if ($id !== "") {
             $type = $this->getById($id);
         }
-        require_once "app/view/type/update.php";
+        require_once "app/view/admin/type/update.php";
     }
     public function D($id)
     {
@@ -29,7 +29,7 @@ class TypeController extends TypeModel
             parent::delete($id);
         }
         echo '<script>
-        window.location.href="/PHP2/ASM2/Tlist";
+        window.location.href="http://localhost:10/PHP2/ASM2/type";
         </script>';
     }
     // Thực hiện Cre và Upd ===> POST 
@@ -40,7 +40,7 @@ class TypeController extends TypeModel
             parent::insert($type);
         }
         echo '<script>
-        window.location.href="/PHP2/ASM2/Tlist";
+        window.location.href="http://localhost:10/PHP2/ASM2/type";
         </script>';
     }
     public function Upd($id)
@@ -53,7 +53,7 @@ class TypeController extends TypeModel
             }
         }
         echo '<script>
-        window.location.href="/PHP2/ASM2/Tlist";
+        window.location.href="http://localhost:10/PHP2/ASM2/type";
         </script>';
     }
 }

@@ -41,6 +41,7 @@ class ProductModel extends DB
             ':des' => $des,
             ':price' => $price
         ]);
+        
     }
     
     public function update($id,$type,$name,$img,$des,$price)
@@ -58,10 +59,67 @@ class ProductModel extends DB
         ':des' => $des,
         ':price' => $price
     ]);
-            // có thể add thêm không giới hạn $this->execute
     }
     catch (Exception $e) {
         throw $e;
     }
     }
+// public function uploadImage($img)
+// {
+//     $allowedTypes = ['jpg', 'jpeg', 'png', 'gif'];
+//     $imgExtension = strtolower(pathinfo($img['name'], PATHINFO_EXTENSION));
+
+//     if ($img['name'] !== "" && in_array($imgExtension, $allowedTypes)) {
+//         // Đường dẫn đầy đủ tới thư mục uploads
+//         $uploadDir ='assets/uploads/';
+
+//         // Tên file gốc
+//         $imgName = $img['name'];
+//         $imgPath = $uploadDir . $imgName;
+
+//         if (move_uploaded_file($img['tmp_name'], $imgPath)) {
+//             // Trả về một mảng chứa thông tin về ảnh
+//             return [
+//                 'path' => $imgPath,
+//                 'name' => $imgName,
+//                 'extension' => $imgExtension,
+//                 'size' => $img['size'],
+//                 'mime' => $img['type']
+//             ];
+//         }
+//     }
+
+//     // Trả về mảng rỗng nếu có lỗi hoặc không phải loại file hỗ trợ
+//     return [];
+// }
+public function uploadImage($img)
+{
+    // Kiểm tra nếu không có ảnh mới được tải lên hoặc không phải là một loại tệp tin ảnh hợp lệ
+    if (!isset($img['name']) || $img['name'] === "" || !in_array(strtolower(pathinfo($img['name'], PATHINFO_EXTENSION)), ['jpg', 'jpeg', 'png', 'gif'])) {
+        // Trả về null
+        return null;
+    }
+
+    // Đường dẫn đầy đủ tới thư mục uploads
+    $uploadDir ='assets/uploads/';
+
+    // Tên file gốc
+    $imgName = $img['name'];
+    $imgPath = $uploadDir . $imgName;
+
+    if (move_uploaded_file($img['tmp_name'], $imgPath)) {
+        // Trả về một mảng chứa thông tin về ảnh
+        return [
+            'path' => $imgPath,
+            'name' => $imgName,
+            'extension' => strtolower(pathinfo($img['name'], PATHINFO_EXTENSION)),
+            'size' => $img['size'],
+            'mime' => $img['type']
+        ];
+    }
+
+    // Trả về null nếu có lỗi khi di chuyển ảnh
+    return null;
+}
+
 }

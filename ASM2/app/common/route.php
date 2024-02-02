@@ -4,7 +4,6 @@ use Phroute\Phroute\RouteCollector;
 use App\Controller\ProductController;
 use App\Controller\TypeController;
 use App\Controller\AccountController;
-
 require_once 'vendor/autoload.php';
 
 session_start();
@@ -24,7 +23,36 @@ $router->filter('auth', function(){
 });
 
 // Define routes
-$router->get('/', [ProductController::class, 'r']);
+$router->get('/', [ProductController::class, 'home']);
+$router->get('home', [ProductController::class, 'home']);
+// Product 
+$router->get('product/{id}', [ProductController::class, 'product']);
+// ADMIN
+$router->get('admin', [AccountController::class, 'admin']);
+$router->get('account', [AccountController::class, 'account']);
+$router->get('product', [AccountController::class, 'product']);
+$router->get('type', [AccountController::class, 'type']);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 // Account
 $router->get('Alist', [AccountController::class, 'r']);
 $router->get('Aadd', [AccountController::class, 'c']);
