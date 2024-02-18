@@ -1,0 +1,27 @@
+<table border="1">
+ <thead>
+ <th>ID</th>
+ <th>Tên sách</th>
+ <th>Tác giả</th>
+ <th>Số lượng</th>
+ <th>Giá</th>
+ </thead>
+ <tbody>
+
+ <?php $__currentLoopData = $lstSach; $this->addLoop($__currentLoopData);$this->getFirstLoop();
+ foreach($__currentLoopData as $sach): $loop = $this->incrementLoopIndices();  ?>
+ <tr>
+ <td><?php echo \htmlentities($sach['idSach']??'', ENT_QUOTES, 'UTF-8', false); ?></td>
+ <td><?php echo \htmlentities($sach['tenSach']??'', ENT_QUOTES, 'UTF-8', false); ?></td>
+ <td><?php echo \htmlentities($sach['tacGia']??'', ENT_QUOTES, 'UTF-8', false); ?></td>
+ <td><?php echo \htmlentities($sach['soLuong']??'', ENT_QUOTES, 'UTF-8', false); ?></td>
+ <td><?php echo \htmlentities($sach['gia']??'', ENT_QUOTES, 'UTF-8', false); ?></td>
+ <th>
+ <a href="">Sửa</a>
+ <a href="">Xóa</a>
+ </th>
+ </tr>
+ <?php endforeach; $this->popLoop(); $loop = $this->getFirstLoop(); ?>
+ </tbody>
+
+</table>

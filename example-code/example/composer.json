@@ -1,0 +1,19 @@
+{
+    "name": "hung/demo",
+    "type": "n",
+    "autoload": {
+        "psr-4": {
+            "App\\": "app/"
+        }
+    },
+    "authors": [
+        {
+            "name": "hungcv10",
+            "email": "cvhung93.mta@gmail.com"
+        }
+    ],
+    "require": {
+        "phroute/phroute": "^2.2",
+        "eftec/bladeone": "^4.11"
+    }
+}
